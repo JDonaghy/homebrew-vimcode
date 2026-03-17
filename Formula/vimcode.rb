@@ -1,8 +1,8 @@
 class Vimcode < Formula
   desc "Vim-like code editor with GTK4, tree-sitter, and LSP support"
   homepage "https://github.com/JDonaghy/vimcode"
-  url "https://github.com/JDonaghy/vimcode/archive/refs/tags/v0.3.7.tar.gz"
-  sha256 "3d2b68ff6bcbfea723ddfd26234ca0e99dc67d69d780e386405325a574c59e39"
+  url "https://github.com/JDonaghy/vimcode/archive/refs/tags/v0.3.8.tar.gz"
+  sha256 "9e22ff9e7efd9b7d85405519fa5efe7ecb0d3386431188a921504d2a51e6ff5d"
   license "MIT"
   head "https://github.com/JDonaghy/vimcode.git", branch: "main"
 
