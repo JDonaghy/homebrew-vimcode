@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version (e.g. 0.3.8)"
+        description: "Release version (e.g. 0.5.0)"
         required: true
 
 jobs:
@@ -13,22 +13,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Compute SHA256
+      - name: Compute SHA256 from release binaries
         id: sha
         run: |
-          URL="https://github.com/JDonaghy/vimcode/archive/refs/tags/v${{ inputs.version }}.tar.gz"
-          SHA=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
-          echo "sha256=$SHA" >> "$GITHUB_OUTPUT"
-          echo "Computed SHA256: $SHA"
+          VERSION="${{ inputs.version }}"
+          VIMCODE_SHA=$(curl -sL "https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-arm64.tar.gz" | sha256sum | cut -d' ' -f1)
+          VCD_SHA=$(curl -sL "https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vcd-macos-arm64.tar.gz" | sha256sum | cut -d' ' -f1)
+          echo "vimcode_sha=$VIMCODE_SHA" >> "$GITHUB_OUTPUT"
+          echo "vcd_sha=$VCD_SHA" >> "$GITHUB_OUTPUT"
+          echo "Computed vimcode SHA256: $VIMCODE_SHA"
+          echo "Computed vcd SHA256: $VCD_SHA"
 
       - name: Update formulas
         run: |
           VERSION="${{ inputs.version }}"
-          SHA="${{ steps.sha.outputs.sha256 }}"
-          for formula in Formula/vimcode.rb Formula/vcd.rb; do
-            sed -i "s|url \".*\"|url \"https://github.com/JDonaghy/vimcode/archive/refs/tags/v${VERSION}.tar.gz\"|" "$formula"
-            sed -i "s|sha256 \".*\"|sha256 \"${SHA}\"|" "$formula"
-          done
+          VIMCODE_SHA="${{ steps.sha.outputs.vimcode_sha }}"
+          VCD_SHA="${{ steps.sha.outputs.vcd_sha }}"
+
+          # vimcode formula
+          sed -i "s|url \".*\"|url \"https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-arm64.tar.gz\"|" Formula/vimcode.rb
+          sed -i "s|version \".*\"|version \"${VERSION}\"|" Formula/vimcode.rb
+          sed -i "s|sha256 \".*\"|sha256 \"${VIMCODE_SHA}\"|" Formula/vimcode.rb
+
+          # vcd formula
+          sed -i "s|url \".*\"|url \"https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vcd-macos-arm64.tar.gz\"|" Formula/vcd.rb
+          sed -i "s|version \".*\"|version \"${VERSION}\"|" Formula/vcd.rb
+          sed -i "s|sha256 \".*\"|sha256 \"${VCD_SHA}\"|" Formula/vcd.rb
 
       - name: Commit and push
         run: |
