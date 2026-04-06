@@ -3,7 +3,7 @@ class Vimcode < Formula
   homepage "https://github.com/JDonaghy/vimcode"
   url "https://github.com/JDonaghy/vimcode/releases/download/v0.8.0/vimcode-macos-arm64.tar.gz"
   version "0.8.0"
-  sha256 "5bde5cc3eabd8b11e93b62f339ee872ba5e978b757c7693818f624cbfb113259"
+  sha256 "a24e616d9fd321b07f12cc96c92217f99e550127511712d3d8fd4d8837b0e875"
   license "MIT"
 
   depends_on "gtk4"
