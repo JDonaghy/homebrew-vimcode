@@ -1,9 +1,9 @@
 class Vcd < Formula
   desc "Vim-like TUI code editor with tree-sitter and LSP support"
   homepage "https://github.com/JDonaghy/vimcode"
-  url "https://github.com/JDonaghy/vimcode/releases/download/v0.10.0/vcd-macos-arm64.tar.gz"
-  version "0.10.0"
-  sha256 "d56267992ef148f7c5c061780a76bb1aabbbccba186841d190bc8cdf1d46ae3e"
+  url "https://github.com/JDonaghy/vimcode/releases/download/v0.13.0/vcd-macos-arm64.tar.gz"
+  version "0.13.0"
+  sha256 "a138b757af3b4fa4e58fd1c7707ec04e4f502c4e6eafb5af9597da7511446d68"
   license "MIT"
 
   def install
