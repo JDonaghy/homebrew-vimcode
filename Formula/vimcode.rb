@@ -1,9 +1,9 @@
 class Vimcode < Formula
   desc "Vim-like code editor with GTK4, tree-sitter, and LSP support"
   homepage "https://github.com/JDonaghy/vimcode"
-  url "https://github.com/JDonaghy/vimcode/releases/download/v0.15.2/vimcode-macos-arm64.tar.gz"
-  version "0.15.2"
-  sha256 "17f6b01d22511cee934fb70025da76e319b3079b060004fe53eecbe21b04b3f7"
+  url "https://github.com/JDonaghy/vimcode/releases/download/v0.15.3/vimcode-macos-arm64.tar.gz"
+  version "0.15.3"
+  sha256 "b3c9af4f888b38aef96f2e386de71bad63beec9e462e7757d129a0241200f391"
   license "MIT"
 
   depends_on "gtk4"
