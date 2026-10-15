@@ -20,7 +20,7 @@ jobs:
         id: sha
         run: |
           VERSION="${{ inputs.version }}"
-          VIMCODE_SHA=$(curl -sL "https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-arm64.tar.gz" | sha256sum | cut -d' ' -f1)
+          VIMCODE_SHA=$(curl -sL "https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-native-arm64.tar.gz" | sha256sum | cut -d' ' -f1)
           VCD_SHA=$(curl -sL "https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vcd-macos-arm64.tar.gz" | sha256sum | cut -d' ' -f1)
           echo "vimcode_sha=$VIMCODE_SHA" >> "$GITHUB_OUTPUT"
           echo "vcd_sha=$VCD_SHA" >> "$GITHUB_OUTPUT"
@@ -34,7 +34,7 @@ jobs:
           VCD_SHA="${{ steps.sha.outputs.vcd_sha }}"
 
           # vimcode formula
-          sed -i "s|url \".*\"|url \"https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-arm64.tar.gz\"|" Formula/vimcode.rb
+          sed -i "s|url \".*\"|url \"https://github.com/JDonaghy/vimcode/releases/download/v${VERSION}/vimcode-macos-native-arm64.tar.gz\"|" Formula/vimcode.rb
           sed -i "s|version \".*\"|version \"${VERSION}\"|" Formula/vimcode.rb
           sed -i "s|sha256 \".*\"|sha256 \"${VIMCODE_SHA}\"|" Formula/vimcode.rb
 
