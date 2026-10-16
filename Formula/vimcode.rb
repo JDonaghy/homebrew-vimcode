@@ -7,7 +7,24 @@ class Vimcode < Formula
   license "MIT"
 
   def install
-    bin.install "vimcode"
+    if File.directory?("VimCode.app")
+      prefix.install "VimCode.app"
+      bin.install_symlink prefix/"VimCode.app/Contents/MacOS/VimCode" => "vimcode"
+    else
+      bin.install "vimcode"
+    end
+  end
+
+  def caveats
+    if (prefix/"VimCode.app").exist?
+      <<~EOS
+        VimCode.app has been installed to:
+          #{prefix}/VimCode.app
+
+        To add it to Spotlight, Launchpad, and your Dock:
+          ln -sf "#{prefix}/VimCode.app" /Applications/VimCode.app
+      EOS
+    end
   end
 
   test do
