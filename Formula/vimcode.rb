@@ -9,6 +9,13 @@ class Vimcode < Formula
   def install
     if File.directory?("VimCode.app")
       prefix.install "VimCode.app"
+    elsif File.exist?("Contents/Info.plist")
+      (buildpath/"VimCode.app").mkpath
+      cp_r "Contents", "VimCode.app/"
+      prefix.install "VimCode.app"
+    end
+
+    if (prefix/"VimCode.app").exist?
       bin.install_symlink prefix/"VimCode.app/Contents/MacOS/VimCode" => "vimcode"
     else
       bin.install "vimcode"
