@@ -10,7 +10,7 @@ cask "vimcode" do
   app "VimCode.app"
   binary "#{appdir}/VimCode.app/Contents/MacOS/VimCode", target: "vimcode"
 
-  postflight do
+  postflight_steps do
     system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/VimCode.app"]
   end
 
