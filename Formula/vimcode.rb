@@ -29,7 +29,7 @@ class Vimcode < Formula
           #{prefix}/VimCode.app
 
         To add it to Spotlight, Launchpad, and your Dock:
-          ln -sf "#{prefix}/VimCode.app" /Applications/VimCode.app
+          cp -R "#{prefix}/VimCode.app" /Applications/VimCode.app
       EOS
     end
   end
