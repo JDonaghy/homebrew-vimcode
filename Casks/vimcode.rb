@@ -1,6 +1,6 @@
 cask "vimcode" do
-  version "0.15.4"
-  sha256 "9c3492e9ca0250960f4b1caf140f7befbcd06a324f3f94f1601853509318e126"
+  version "0.15.5"
+  sha256 "9b3e174bea0ff2e54286d06aabb8d98a3ce3e8ec28e9787e81476afd64b4aa75"
 
   url "https://github.com/JDonaghy/vimcode/releases/download/v#{version}/vimcode-macos-native-arm64.tar.gz"
   name "VimCode"
