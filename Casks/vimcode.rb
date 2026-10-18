@@ -8,10 +8,10 @@ cask "vimcode" do
   homepage "https://github.com/JDonaghy/vimcode"
 
   app "VimCode.app"
-  binary "#{appdir}/VimCode.app/Contents/MacOS/VimCode", target: "vimcode"
+  binary "/Applications/VimCode.app/Contents/MacOS/VimCode", target: "vimcode"
 
-  postflight_steps do
-    system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/VimCode.app"]
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-cr", "/Applications/VimCode.app"]
   end
 
   zap trash: [
