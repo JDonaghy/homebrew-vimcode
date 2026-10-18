@@ -9,6 +9,10 @@ cask "vimcode" do
 
   app "VimCode.app"
 
+  postflight do
+    system_command "/usr/bin/xattr", args: ["-cr", "#{appdir}/VimCode.app"]
+  end
+
   zap trash: [
     "~/Library/Application Support/VimCode",
     "~/Library/Caches/VimCode",
